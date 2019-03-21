@@ -1,0 +1,15 @@
+.custom-select {
+    background-color: transparent;
+    color: black;
+}
+
+#name-input {
+    background-color: transparent;
+    width: 85ex;
+    color: black;
+}
+
+.option {
+    background-color: transparent;
+    color: black;
+}

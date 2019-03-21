@@ -1,0 +1,82 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="https://v4.bootcss.com/favicon.ico">
+
+    <title>Ariy Blog</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Custom styles for this template -->
+    <link th:href="@{/css/blog.css}" rel="stylesheet">
+    <link href="/css/create.css" rel="stylesheet">
+</head>
+
+<body>
+
+<div th:include="index::site-header">
+
+</div>
+
+<div class="container">
+    <div style="height: 100px">
+        &nbsp;
+    </div>
+    <form id="form" th:action="@{/create}" method="post">
+        <div class="input-group mb-3">
+            <select class="custom-select" id="inputGroupSelect01" name="type">
+                <option selected class="option">浮生若梦</option>
+                <option value="1" class="option">光风霁月</option>
+                <option value="2" class="option">岁暮天寒</option>
+                <option value="3" class="option">灯火阑珊</option>
+            </select>
+            <input type="text" class="form-control" id="name-input" name="name">
+            <input type="hidden" id="text-input" name="text">
+        </div>
+    </form>
+    <div id="editor">
+        <p>欢迎使用 <b>wangEditor</b> 富文本编辑器</p>
+    </div>
+    <br/>
+    <div align="center">
+        <button class="btn btn-sm" id="btn1">提交</button>
+    </div>
+</div>
+
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://unpkg.com/wangeditor/release/wangEditor.min.js"></script>
+<script type="text/javascript">
+    var E = window.wangEditor
+    var editor = new E('#editor')
+    editor.create()
+
+    document.getElementById('btn1').addEventListener('click', function () {
+        var otext = editor.txt.html();
+        var oinput = document.getElementById("text-input");
+        oinput.value = otext;
+        var oform = document.getElementById("form");
+        oform.submit();
+    }, false)
+
+</script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cc.ariy.blog.mapper.BlogMapper">
+    <resultMap id="BaseResultMap" type="cc.ariy.blog.domain.Blog">
+        <result column="B_ID" property="id" />
+        <result column="B_NAME" property="name" />
+        <result column="B_TEXT" property="text" />
+        <result column="B_DATE" jdbcType="TIMESTAMP" property="date" />
+        <result column="B_READING" property="reading" />
+
+    </resultMap>
+    <insert id="save" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO BLOG (B_NAME,B_TEXT,B_READING) VALUES (#{name},#{text},#{reading})
+    </insert>
+    <select id="listAll" resultMap="BaseResultMap">
+        SELECT * FROM BLOG
+    </select>
+    <select id="get" resultMap="BaseResultMap">
+        SELECT * FROM BLOG WHERE B_ID = #{id}
+    </select>
+</mapper>

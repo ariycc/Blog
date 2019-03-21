@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cc.ariy.blog.mapper.RoleMapper">
+    <select id="getByUserId" resultType="cc.ariy.blog.domain.Role">
+        SELECT r.id,r.name FROM ROLE r JOIN USER_ROLE ur ON r.id = ur.rid WHERE ur.uid = #{uid}
+    </select>
+    <select id="getByName" resultType="cc.ariy.blog.domain.Role">
+        SELECT * FROM ROLE WHERE NAME = #{name}
+    </select>
+</mapper>

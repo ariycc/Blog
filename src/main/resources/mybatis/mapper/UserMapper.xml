@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cc.ariy.blog.mapper.UserMapper">
+    <resultMap id="BaseResultMap" type="cc.ariy.blog.domain.User">
+        <id column="ID" property="id"/>
+        <result column="USERNAME" property="username"/>
+        <result column="PASSWORD" property="password"/>
+        <!--这里的User对应多个Role-->
+        <collection property="roles" ofType="Role" select="cc.ariy.blog.mapper.RoleMapper.getByUserId" column="id"/>
+    </resultMap>
+    <insert id="save" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO USERS (USERNAME,PASSWORD) VALUES (#{username},#{password})
+    </insert>
+    <insert id="saveUR">
+        INSERT INTO USER_ROLE (UID,RID) VALUES (#{uid},#{rid})
+    </insert>
+    <select id="getById" resultMap="BaseResultMap">
+        SELECT * FROM USERS WHERE ID = #{id}
+    </select>
+    <select id="getByName" resultMap="BaseResultMap">
+        SELECT * FROM USERS WHERE USERNAME = #{username}
+    </select>
+</mapper>
